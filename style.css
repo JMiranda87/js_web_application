@@ -1,0 +1,49 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+.container{
+    background-color: beige;
+    height: 910px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.header-image{
+    height: 150px;
+    margin-top: 20px;
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.search h1{
+    font-size: 40px;
+}
+
+.random{
+    justify-content: center;
+    display: flex;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.random h1 {
+    font-size: 40px;
+}
+
+
+
+footer{
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
