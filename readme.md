@@ -1,0 +1,1 @@
+For this program, I wanted to create a simple Pokedex app where you could generate random Pokemon as well as search for specific Pokemon. 
