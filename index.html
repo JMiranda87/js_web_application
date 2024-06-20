@@ -1,0 +1,42 @@
+<!-- Purpose: This is the main page of the Pokedex. It contains a search form and a button to generate a random Pokemon. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <h1>Pokedex</h1>
+        </header>
+        <main>
+            <section>
+            
+                <h2>Search</h2>
+            
+                    <label for="search">Search for a Pokemon:</label>
+                    <input type="text" id="search" name="search">
+                    <button type="submit">Search</button>
+            
+            </section>
+            <section>
+                
+                <h2>Random Pokemon</h2>
+                <div class="result">
+                    
+                </div>
+            
+                    <button id="randomPokemon">Random Pokemon</button>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Pokedex</p>
+        </footer>
+    </div>
+    <script src="app.js" type="module"></script>
+</body>
+</html>
