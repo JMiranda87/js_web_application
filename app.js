@@ -44,12 +44,12 @@ randomPokemonButton.addEventListener('click', () => {
 searchPokemonButton.addEventListener('click', (e) => {
     e.preventDefault();
     getAllPokemon().then((pokemon) => {
-        console.log(userSearch.value);
+        // console.log(userSearch.value);
         allPokemon = pokemon
 
-       let foundPokemonURL =  findSpecificPokemonURL(userSearch.value);
-      getOnePokemon(foundPokemonURL).then((usersPokemon) => {
-        console.log(usersPokemon);
+    let foundPokemonURL =  findSpecificPokemonURL(userSearch.value);
+    getOnePokemon(foundPokemonURL).then((usersPokemon) => {
+        // console.log(usersPokemon);
         emptyPokemon(result2);
         // console.log(pokemon);
         let pokemonImage = imageFactory(usersPokemon.sprites.front_default);
@@ -57,15 +57,7 @@ searchPokemonButton.addEventListener('click', (e) => {
         result2.appendChild(pokemonName);
         result2.appendChild(pokemonImage);
         
-      })
-      
-        // for (let i = 0; i < pokemon.results.length; i++) {
-        //     console.log("inside for loop")
-        //     if (pokemon.results[i].name === userSearch.value) {
-        //         console.log(pokemon.results[i].name);
-        //         return true;
-        //     }
-        // }
+    })
         
     })
 })
@@ -74,7 +66,7 @@ searchPokemonButton.addEventListener('click', (e) => {
 function findSpecificPokemonURL (pokemon){
     for (let i = 0; i < allPokemon.results.length; i++) {
         if (allPokemon.results[i].name === pokemon) {
-            console.log(allPokemon.results[i].name);
+            // console.log(allPokemon.results[i].name);
             return allPokemon.results[i].url
         }
         
