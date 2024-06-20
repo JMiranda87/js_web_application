@@ -2,7 +2,11 @@ import imageFactory from "./image-factory.js";
 import emptyPokemon from "./emptyelements.js";
 import nameFactory from "./name-factory.js";
 let result = document.querySelector('.result');
+let result2 = document.querySelector('.result2');
+let userSearch = document.querySelector('#search');
 let randomPokemonButton =  document.querySelector('#randomPokemon');
+let searchPokemonButton =  document.querySelector('.search-btn');
+let allPokemon;
 async function logPokemon() {
     let randomPokemon = Math.floor(Math.random() * 1000);
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokemon}/`);
@@ -11,12 +15,20 @@ async function logPokemon() {
     return pokemon;
 }
 
-// logPokemon().then((pokemon) => {
+async function getAllPokemon() {;
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`);
+    const pokemon = await response.json();
+    // console.log(pokemon.results);
+    return pokemon;
+}
 
-//     console.log(pokemon);
-//     let pokemonImage = imageFactory(pokemon.sprites.front_default);
-//     result.appendChild(pokemonImage);
-// });
+async function getOnePokemon(url) {;
+    const response = await fetch(url);
+    const pokemon = await response.json();
+    // console.log(pokemon.results);
+    return pokemon;
+}
+
 
 randomPokemonButton.addEventListener('click', () => {
     logPokemon().then((pokemon) => {
@@ -28,4 +40,49 @@ randomPokemonButton.addEventListener('click', () => {
         result.appendChild(pokemonImage);
     });
 })
+
+searchPokemonButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    getAllPokemon().then((pokemon) => {
+        console.log(userSearch.value);
+        allPokemon = pokemon
+
+       let foundPokemonURL =  findSpecificPokemonURL(userSearch.value);
+      getOnePokemon(foundPokemonURL).then((usersPokemon) => {
+        console.log(usersPokemon);
+        emptyPokemon(result2);
+        // console.log(pokemon);
+        let pokemonImage = imageFactory(usersPokemon.sprites.front_default);
+        let pokemonName = nameFactory(usersPokemon.name);
+        result2.appendChild(pokemonName);
+        result2.appendChild(pokemonImage);
+        
+      })
+      
+        // for (let i = 0; i < pokemon.results.length; i++) {
+        //     console.log("inside for loop")
+        //     if (pokemon.results[i].name === userSearch.value) {
+        //         console.log(pokemon.results[i].name);
+        //         return true;
+        //     }
+        // }
+        
+    })
+})
+
+
+function findSpecificPokemonURL (pokemon){
+    for (let i = 0; i < allPokemon.results.length; i++) {
+        if (allPokemon.results[i].name === pokemon) {
+            console.log(allPokemon.results[i].name);
+            return allPokemon.results[i].url
+        }
+        
+    }
+    alert("Pokemon not found")
+        return false
+}
+
+
+
 
